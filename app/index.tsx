@@ -1,15 +1,7 @@
-import { Text, View } from "react-native";
+import RoleScreen from "./(role-screen)/role-screen"
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text className="text-blue-500">Hello guys</Text>
-    </View>
-  );
+    <RoleScreen />
+  )
 }
