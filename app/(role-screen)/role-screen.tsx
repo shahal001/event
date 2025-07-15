@@ -1,13 +1,13 @@
 
 import { View } from "react-native"
 
-import { Header } from "@/components/common"
 import { Button } from "@/components/elements"
+import { ScreenLayout } from "@/components/layout"
 import { TextInputBox } from "@/components/form-elements"
 
 export default function RoleScreen() {
     return (
-        <Header>
+        <ScreenLayout showBackIcon={false}>
             <View className="flex flex-col gap-6">
                 <TextInputBox
                     value={""}
@@ -19,6 +19,6 @@ export default function RoleScreen() {
                     onPress={() => console.log("clicked..")}
                 />
             </View>
-        </Header>
+        </ScreenLayout>
     )
 }

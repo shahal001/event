@@ -1,4 +1,6 @@
 import { useCallback } from "react"
+import { SplashScreen, Stack } from "expo-router"
+import { SafeAreaView, StatusBar } from "react-native"
 
 import {
   CormorantGaramond_400Regular,
@@ -7,8 +9,6 @@ import {
   CormorantGaramond_700Bold,
   useFonts,
 } from '@expo-google-fonts/cormorant-garamond'
-import { SplashScreen, Stack } from "expo-router"
-import { SafeAreaView, StatusBar } from "react-native"
 
 import "./global.css"
 

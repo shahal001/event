@@ -14,7 +14,7 @@ module.exports = {
       fontFamily: {
         "cormorant-regular": ["cormorant-regular"],
         "cormorant-medium": ["cormorant-medium"],
-        "cormorant-semibold": ["cormorant-semibold"],
+        "cormorant-semibold": ["cormorant-semiBold"],
         "cormorant-bold": ["cormorant-bold"],
       },
       colors: {
