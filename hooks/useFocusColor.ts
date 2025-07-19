@@ -1,7 +1,7 @@
-import { Keyboard } from "react-native"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 
 import { convertColor } from "@/utils/functions"
+import { theme_primary_color } from "@/constants"
 
 interface UseFocusColorReturn {
     isFocused: boolean;
@@ -17,19 +17,9 @@ export const useFocusColor = (): UseFocusColorReturn => {
     const handleFocus = useCallback(() => setIsFocused(true), [])
     const handleBlur = useCallback(() => setIsFocused(false), [])
 
-    useEffect(() => {
-        const showSubscription = Keyboard.addListener("keyboardDidShow", handleFocus)
-        const hideSubscription = Keyboard.addListener("keyboardDidHide", handleBlur)
-
-        return () => {
-            showSubscription.remove()
-            hideSubscription.remove()
-        }
-    }, [handleFocus, handleBlur])
-
     const BORDER_COLOR = isFocused
-        ? convertColor("#1C3935", 0.4)
-        : convertColor("#1C3935", 0.2)
+        ? convertColor(theme_primary_color, 0.4)
+        : convertColor(theme_primary_color, 0.2)
 
     const SELECTION_COLOR = convertColor("#A0ADA9", 0.5)
 
