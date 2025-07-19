@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-import { TextInput, View } from "react-native"
 import { convertColor } from "@/utils/functions"
+
+import { Keyboard, TextInput, View } from "react-native"
 
 const TextInputBox = ({
     value,
@@ -14,8 +15,23 @@ const TextInputBox = ({
 }) => {
     const [isFocused, setIsFocused] = useState(false)
 
+    useEffect(() => {
+        const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+            setIsFocused(true)
+        })
+
+        const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+            setIsFocused(false)
+        })
+
+        return () => {
+            showSubscription.remove()
+            hideSubscription.remove()
+        }
+    }, [])
+
     const BORDER_COLOR = isFocused ? convertColor("#1C3935", 0.4) : convertColor("#1C3935", 0.2)
-    const SELECTION_COLOR = convertColor("#A0ADA9", 0.5);
+    const SELECTION_COLOR = convertColor("#A0ADA9", 0.5)
 
     return (
         <View>
