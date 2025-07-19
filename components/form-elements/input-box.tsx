@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react"
 
-import { convertColor } from "@/utils/functions"
-
-import { Keyboard, TextInput, View } from "react-native"
+import { TextInput, View } from "react-native"
+import { useFocusColor } from "@/hooks/useFocusColor"
 
 const TextInputBox = ({
     value,
@@ -13,39 +11,26 @@ const TextInputBox = ({
     onChangeValue: (value: string) => void;
     placeholderText?: string | undefined;
 }) => {
-    const [isFocused, setIsFocused] = useState(false)
-
-    useEffect(() => {
-        const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-            setIsFocused(true)
-        })
-
-        const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-            setIsFocused(false)
-        })
-
-        return () => {
-            showSubscription.remove()
-            hideSubscription.remove()
-        }
-    }, [])
-
-    const BORDER_COLOR = isFocused ? convertColor("#1C3935", 0.4) : convertColor("#1C3935", 0.2)
-    const SELECTION_COLOR = convertColor("#A0ADA9", 0.5)
+    const {
+        borderColor,
+        selectionColor,
+        handleFocus,
+        handleBlur
+    } = useFocusColor()
 
     return (
         <View>
             <TextInput
                 className="w-full bg-secondary-color border border-solid rounded-3xl font-cormorant-regular text-sm leading-5 tracking-sm placeholder:text-gray-shade h-[52px] px-5 outline-none"
                 style={{
-                    borderColor: BORDER_COLOR
+                    borderColor: borderColor
                 }}
                 value={value}
                 onChangeText={onChangeValue}
                 placeholder={placeholderText}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                selectionColor={SELECTION_COLOR}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                selectionColor={selectionColor}
             />
         </View>
     )
